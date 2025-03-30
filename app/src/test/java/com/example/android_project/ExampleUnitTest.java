@@ -1,4 +1,4 @@
-package com.example.appsanst;
+package com.example.android_project;
 
 import org.junit.Test;
 
