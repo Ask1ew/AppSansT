@@ -54,5 +54,9 @@
             android:name=".RepasActivity"
             android:exported="true"
             android:label="@string/title_activity_repas"/>
+
+        <activity android:name=".AjoutRepasActivity"
+                  android:exported="true"
+                  android:label="@string/title_activity_repas"/>
     </application>
 </manifest>
