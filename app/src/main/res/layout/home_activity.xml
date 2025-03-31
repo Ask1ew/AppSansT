@@ -5,14 +5,22 @@
     android:layout_height="match_parent"
     tools:context="home.homeActivity">
 
+    <!-- Barre de menu fragment -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/menu_fragment_container"
+        android:name="fragments.menuBarre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
+
     <TextView
         android:id="@+id/welcome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textColor="@android:color/black"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        tools:text="Welcome!">
-    </TextView>
+        tools:text="Welcome!"
+        android:layout_marginTop="64dp"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
