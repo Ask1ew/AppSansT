@@ -6,35 +6,79 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".AjoutRepasActivity"
-        android:padding="24dp">
+        android:padding="16dp">
 
-    <!-- Nom du repas -->
+    <!-- Nom aliment -->
     <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayoutNom"
+            android:id="@+id/layoutNomAliment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp">
+            app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputNom"
+                android:id="@+id/inputNomAliment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nom du repas"
-                android:inputType="text" />
+                android:hint="Nom de l'aliment"/>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Quantité + unité -->
+    <LinearLayout
+            android:id="@+id/layoutQuantiteUnite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutNomAliment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:weightSum="2">
+
+        <!-- Quantité -->
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputQuantite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Quantité"
+                    android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Liste déroulante pour unité -->
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:hint="Unité">
+
+            <AutoCompleteTextView
+                    android:id="@+id/dropdownUnite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:minHeight="48dp"
+                    android:paddingVertical="8dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
     <!-- Calories -->
     <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayoutCalories"
+            android:id="@+id/layoutCalories"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/inputLayoutNom"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutQuantiteUnite"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp">
+            app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputCalories"
@@ -44,72 +88,40 @@
                 android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Glucides -->
-    <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayoutGlucides"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/inputLayoutCalories"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputGlucides"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Glucides (g)"
-                android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Protéines -->
-    <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayoutProteines"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/inputLayoutGlucides"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputProteines"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Protéines (g)"
-                android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Lipides -->
-    <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayoutLipides"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/inputLayoutProteines"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputLipides"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Lipides (g)"
-                android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Bouton valider -->
+    <!-- Bouton ajouter aliment -->
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnValider"
+            android:id="@+id/btnAjouterAliment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Ajouter le repas"
-            app:layout_constraintTop_toBottomOf="@id/inputLayoutLipides"
+            android:layout_marginTop="12dp"
+            android:text="Ajouter l'aliment"
+            app:layout_constraintTop_toBottomOf="@id/layoutCalories"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="32dp"
-            app:cornerRadius="12dp"
+            app:backgroundTint="#1E2654"/>
+
+    <!-- RecyclerView pour afficher les aliments ajoutés -->
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewAliments"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/btnAjouterAliment"
+            app:layout_constraintBottom_toTopOf="@+id/btnValiderRepas"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/item_aliment"/>
+
+    <!-- Bouton valider le repas -->
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnValiderRepas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Valider le repas"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="24dp"
             app:backgroundTint="#1E2654"
             android:textColor="@android:color/white"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

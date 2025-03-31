@@ -1,0 +1,37 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_margin="8dp"
+                                   android:elevation="4dp"
+                                   android:padding="12dp"
+                                   android:radius="12dp">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+
+        <TextView
+                android:id="@+id/textNom"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Nom"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/textQuantite"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Quantité" />
+
+        <TextView
+                android:id="@+id/textCalories"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Calories" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
