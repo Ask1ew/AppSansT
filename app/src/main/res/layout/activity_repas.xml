@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RepasActivity">
+
+
+    <FrameLayout
+            android:id="@+id/conteneurMenu"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+    <!-- Texte au-dessus de la ProgressBar -->
+    <TextView
+            android:id="@+id/textViewCalories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calories consommées aujourd’hui"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="80dp"/>
+
+    <!-- ProgressBar horizontale -->
+    <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:progress="800"
+            android:max="2000"
+            android:progressTint="#1E2654"
+            android:backgroundTint="#DDDDDD"
+            app:layout_constraintTop_toBottomOf="@id/textViewCalories"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"/>
+
+    <!-- RecyclerView pour les blocs repas -->
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewRepas"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="8dp"
+            app:layout_constraintTop_toBottomOf="@id/progressBar"
+            app:layout_constraintBottom_toTopOf="@id/floatingActionButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/item_repas" />
+
+    <!-- FloatingActionButton pour ajouter un repas -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_add"
+            android:contentDescription="Ajouter un repas"
+            app:tint="@android:color/white"
+            app:backgroundTint="#1E2654"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
