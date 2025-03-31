@@ -18,7 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import connexion.R;
+import com.example.appsanst.R;
 import connexion.ui.login.LoginViewModel;
 import connexion.ui.login.LoginViewModelFactory;
 import com.example.appsanst.databinding.ActivityLoginBinding;

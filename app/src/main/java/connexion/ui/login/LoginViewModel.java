@@ -8,7 +8,7 @@ import android.util.Patterns;
 import connexion.data.LoginRepository;
 import connexion.data.Result;
 import connexion.data.model.LoggedInUser;
-import connexion.R;
+import com.example.appsanst.R;
 
 public class LoginViewModel extends ViewModel {
 
