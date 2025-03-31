@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AjoutRepasActivity"
+        android:padding="24dp">
+
+    <!-- Nom du repas -->
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutNom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputNom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nom du repas"
+                android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Calories -->
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutCalories"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/inputLayoutNom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputCalories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Calories"
+                android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Glucides -->
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutGlucides"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/inputLayoutCalories"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputGlucides"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Glucides (g)"
+                android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Protéines -->
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutProteines"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/inputLayoutGlucides"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputProteines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Protéines (g)"
+                android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Lipides -->
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutLipides"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/inputLayoutProteines"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputLipides"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Lipides (g)"
+                android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Bouton valider -->
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnValider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Ajouter le repas"
+            app:layout_constraintTop_toBottomOf="@id/inputLayoutLipides"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp"
+            app:cornerRadius="12dp"
+            app:backgroundTint="#1E2654"
+            android:textColor="@android:color/white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
