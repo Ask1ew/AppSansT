@@ -14,6 +14,7 @@
     <string name="title_activity_home"/>
     <string name="repas_button_text">Page Repas</string>
     <string name="entrainement_button_text">Page Entraînement</string>
+    <string name="title_activity_entrainement">Page Entraînement</string>
     <string name="poids_button_text">Page Poids</string>
     <string name="objectifs_button_text">Page Objectifs</string>
     <string name="title_activity_poids">Page Poids</string>
