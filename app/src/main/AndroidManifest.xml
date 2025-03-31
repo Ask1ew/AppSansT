@@ -22,6 +22,11 @@
             android:name="connexion.ui.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login"/>
+        <activity
+            android:name="home.homeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_home"/>
+
     </application>
 
 </manifest>

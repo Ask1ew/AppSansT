@@ -2,6 +2,7 @@ package home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 import com.example.appsanst.R;
 
 public class homeActivity extends AppCompatActivity {
@@ -10,5 +11,10 @@ public class homeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+
+        String displayName = getIntent().getStringExtra("displayName");
+
+        TextView welcomeText = findViewById(R.id.welcome_text);
+        welcomeText.setText(getString(R.string.welcome) + " " + displayName);
     }
 }
