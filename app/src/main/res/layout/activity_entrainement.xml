@@ -2,27 +2,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EntrainementActivity">
 
     <!-- Barre de menu fragment -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/menu_fragment_container"
-        android:name="fragments.menuBarre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<androidx.fragment.app.FragmentContainerView
+android:id="@+id/menu_fragment_container"
+android:name="fragments.menuBarre"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textView_entrainement_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bienvenue sur la page Entraînement!"
-        android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@id/menu_fragment_container"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+<TextView
+android:id="@+id/textView_entrainement_title"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Bienvenue sur la page Entraînement!"
+android:textSize="24sp"
+app:layout_constraintTop_toBottomOf="@id/menu_fragment_container"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
