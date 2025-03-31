@@ -1,43 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="wrap_content"
-                                                   android:layout_marginBottom="8dp"
-                                                   android:layout_marginTop="8dp"
-                                                   android:layout_marginStart="8dp"
-                                                   android:layout_marginEnd="8dp"
-                                                   android:elevation="4dp"
+                                                   android:layout_margin="8dp"
                                                    android:padding="12dp"
-                                                   android:radius="12dp">
+                                                   android:radius="12dp"
+                                                   android:elevation="4dp">
 
     <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <TextView
                 android:id="@+id/textNomRepas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Déjeuner"
-                android:textSize="18sp"
+                android:text="Nom du repas"
                 android:textStyle="bold"
-                android:textColor="#222222"/>
+                android:textSize="18sp" />
 
         <TextView
                 android:id="@+id/textCalories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Calories : 650 kcal"
-                android:textColor="#444"/>
+                android:text="Calories : 0 kcal" />
 
         <TextView
                 android:id="@+id/textMacros"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Glucides : 80g | Protéines : 30g | Lipides : 20g"
-                android:textColor="#666"/>
+                android:text="Glucides : 0g | Protéines : 0g | Lipides : 0g" />
 
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>
