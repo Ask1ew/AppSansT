@@ -48,5 +48,10 @@
             android:exported="true"
             android:label="@string/title_activity_objectifs"/>
 
+        <!-- Repas Activity -->
+        <activity
+            android:name=".RepasActivity"
+            android:exported="true"
+            android:label="@string/title_activity_repas"/>
     </application>
 </manifest>

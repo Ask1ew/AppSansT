@@ -18,4 +18,5 @@
     <string name="objectifs_button_text">Page Objectifs</string>
     <string name="title_activity_poids">Page Poids</string>
     <string name="title_activity_objectifs">Page Objectifs</string>
+    <string name="title_activity_repas">Page Repas</string>
 </resources>
