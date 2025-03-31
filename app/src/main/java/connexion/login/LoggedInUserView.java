@@ -1,4 +1,4 @@
-package connexion.ui.login;
+package connexion.login;
 
 /**
  * Class exposing authenticated user details to the UI.

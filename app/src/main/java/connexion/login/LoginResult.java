@@ -1,4 +1,4 @@
-package connexion.ui.login;
+package connexion.login;
 
 import androidx.annotation.Nullable;
 

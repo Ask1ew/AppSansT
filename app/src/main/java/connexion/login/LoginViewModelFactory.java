@@ -1,4 +1,4 @@
-package connexion.ui.login;
+package connexion.login;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;

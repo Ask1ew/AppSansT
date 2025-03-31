@@ -13,7 +13,7 @@
 
         <!-- Login Activity (Activité principale au lancement) -->
         <activity
-            android:name="connexion.ui.login.LoginActivity"
+            android:name="connexion.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login">
             <intent-filter>
