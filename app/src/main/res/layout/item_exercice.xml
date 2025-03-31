@@ -1,0 +1,41 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_margin="8dp"
+                                                   android:elevation="4dp"
+                                                   android:padding="12dp"
+                                                   android:radius="12dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/textNomExercice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nom de l’exercice"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+        <TextView
+                android:id="@+id/textSeries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Séries : 3" />
+
+        <TextView
+                android:id="@+id/textRepetitions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Répétitions : 12" />
+
+        <TextView
+                android:id="@+id/textRepos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Repos : 60 sec" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
