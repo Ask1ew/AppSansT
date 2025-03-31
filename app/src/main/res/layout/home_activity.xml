@@ -31,8 +31,6 @@
         tools:text="Welcome!" />
 
     <!-- Bouton pour accéder à la page Repas -->
-
-    <!-- Bouton pour accéder à la page Entraînement -->
     <Button
         android:id="@+id/button_repas"
         style="@style/Widget.Material3.Button.TonalButton"
@@ -48,6 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
 
+    <!-- Bouton pour accéder à la page Entraînement -->
     <Button
         android:id="@+id/button_entrainement"
         style="@style/Widget.Material3.Button.TonalButton"
