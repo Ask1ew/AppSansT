@@ -1,12 +1,15 @@
+package home;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
+import com.example.appsanst.EntrainementActivity;
 import com.example.appsanst.R;
 import com.example.appsanst.RepasActivity;
 
-public class HomeActivity extends AppCompatActivity {
+public class homeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +26,14 @@ public class HomeActivity extends AppCompatActivity {
         // Configurer le bouton pour la page Repas
         Button buttonRepas = findViewById(R.id.button_repas);
         buttonRepas.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, RepasActivity.class);
+            Intent intent = new Intent(homeActivity.this, RepasActivity.class);
             startActivity(intent);
         });
 
         // Configurer le bouton pour la page Entraînement
         Button buttonEntrainement = findViewById(R.id.button_entrainement);
         buttonEntrainement.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, EntrainementActivity.class); // Assurez-vous que cette activité existe.
+            Intent intent = new Intent(homeActivity.this, EntrainementActivity.class); // Assurez-vous que cette activité existe.
             startActivity(intent);
         });
     }
