@@ -27,4 +27,6 @@
     <string name="poids">Poids</string>
     <string name="objectifs">Objectifs</string>
     <string name="entra_nement">Entraînement</string>
+    <string name="open_menu">Ouvrir le menu de navigation</string>
+    <string name="open_user_account">Ouvrir le compte utilisateur</string>
 </resources>

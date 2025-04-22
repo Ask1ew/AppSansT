@@ -2,30 +2,29 @@ package connexion.login;
 
 import androidx.annotation.Nullable;
 
-/**
- * Authentication result : success (user details) or error message.
- */
-class LoginResult {
+public class LoginResult {
     @Nullable
-    private LoggedInUserView success;
+    private final LoggedInUserView success;
     @Nullable
-    private Integer error;
+    private final String error;
 
-    LoginResult(@Nullable Integer error) {
+    public LoginResult(@Nullable String error) {
         this.error = error;
+        this.success = null;
     }
 
-    LoginResult(@Nullable LoggedInUserView success) {
+    public LoginResult(@Nullable LoggedInUserView success) {
         this.success = success;
+        this.error = null;
     }
 
     @Nullable
-    LoggedInUserView getSuccess() {
+    public LoggedInUserView getSuccess() {
         return success;
     }
 
     @Nullable
-    Integer getError() {
+    public String getError() {
         return error;
     }
 }
