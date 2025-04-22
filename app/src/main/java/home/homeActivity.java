@@ -39,14 +39,14 @@ public class homeActivity extends AppCompatActivity {
         // Configurer le bouton pour la page Poids
         Button buttonPoids = findViewById(R.id.button_poids);
         buttonPoids.setOnClickListener(v -> {
-            Intent intent = new Intent(homeActivity.this, PoidsActivity.class); // Assurez-vous que cette activité existe.
+            Intent intent = new Intent(homeActivity.this, PoidsActivity.class);
             startActivity(intent);
         });
 
         // Configurer le bouton pour la page Objectifs
         Button buttonObjectifs = findViewById(R.id.button_objectifs);
         buttonObjectifs.setOnClickListener(v -> {
-            Intent intent = new Intent(homeActivity.this, ObjectifsActivity.class); // Assurez-vous que cette activité existe.
+            Intent intent = new Intent(homeActivity.this, ObjectifsActivity.class);
             startActivity(intent);
         });
     }
