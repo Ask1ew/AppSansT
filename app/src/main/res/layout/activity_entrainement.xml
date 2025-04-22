@@ -21,11 +21,14 @@
         android:id="@+id/textView_entrainement_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenue sur la page Entraînement!"
-        android:textSize="24sp"
+        android:text="@string/welcome_entrainement"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#111111"
         app:layout_constraintTop_toBottomOf="@id/menu_fragment_container"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_cycles"
