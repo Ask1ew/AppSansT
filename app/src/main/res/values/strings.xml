@@ -12,12 +12,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">Main Activity</string>
     <string name="title_activity_home"/>
-    <string name="repas_button_text">Page Repas</string>
-    <string name="entrainement_button_text">Page Entraînement</string>
-    <string name="title_activity_entrainement">Page Entraînement</string>
-    <string name="poids_button_text">Page Poids</string>
-    <string name="objectifs_button_text">Page Objectifs</string>
-    <string name="title_activity_poids">Page Poids</string>
-    <string name="title_activity_objectifs">Page Objectifs</string>
-    <string name="title_activity_repas">Page Repas</string>
+    <string name="repas_button_text">Repas</string>
+    <string name="entrainement_button_text">Entraînement</string>
+    <string name="title_activity_entrainement">Entraînement</string>
+    <string name="poids_button_text">Poids</string>
+    <string name="objectifs_button_text">Objectifs</string>
+    <string name="title_activity_poids">Poids</string>
+    <string name="title_activity_objectifs">Objectifs</string>
+    <string name="title_activity_repas">Repas</string>
 </resources>
