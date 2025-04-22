@@ -20,34 +20,40 @@ public class ObjectifsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_objectifs);
 
+        // Initialisation des champs
         inCal  = findViewById(R.id.inputObjCalories);
         inProt = findViewById(R.id.inputObjProteines);
         inLip  = findViewById(R.id.inputObjLipides);
         inGlu  = findViewById(R.id.inputObjGlucides);
 
-        // pré‑remplissage
+        // Pré-remplissage si données passées
         Intent src = getIntent();
-        inCal .setText(String.valueOf(src.getIntExtra("calories",  2000)));
+        inCal.setText(String.valueOf(src.getIntExtra("calories", 2000)));
         inProt.setText(String.valueOf(src.getIntExtra("proteines", 100)));
-        inLip .setText(String.valueOf(src.getIntExtra("lipides",    70)));
-        inGlu .setText(String.valueOf(src.getIntExtra("glucides",  250)));
+        inLip.setText(String.valueOf(src.getIntExtra("lipides", 70)));
+        inGlu.setText(String.valueOf(src.getIntExtra("glucides", 250)));
 
+        // Bouton enregistrer
         MaterialButton btnSave = findViewById(R.id.btnSaveObjectifs);
         btnSave.setOnClickListener(v -> save());
     }
 
     private void save() {
-        if (TextUtils.isEmpty(inCal.getText()) || TextUtils.isEmpty(inProt.getText())
-                || TextUtils.isEmpty(inLip.getText()) || TextUtils.isEmpty(inGlu.getText())) {
-            Toast.makeText(this, "Remplis tous les champs", Toast.LENGTH_SHORT).show();
+        // Vérification des champs
+        if (TextUtils.isEmpty(inCal.getText()) ||
+                TextUtils.isEmpty(inProt.getText()) ||
+                TextUtils.isEmpty(inLip.getText()) ||
+                TextUtils.isEmpty(inGlu.getText())) {
+            Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // Préparation des données à retourner
         Intent data = new Intent();
-        data.putExtra("objectifCalories",  Integer.parseInt(inCal .getText().toString()));
+        data.putExtra("objectifCalories",  Integer.parseInt(inCal.getText().toString()));
         data.putExtra("objectifProteines", Integer.parseInt(inProt.getText().toString()));
-        data.putExtra("objectifLipides",   Integer.parseInt(inLip .getText().toString()));
-        data.putExtra("objectifGlucides",  Integer.parseInt(inGlu .getText().toString()));
+        data.putExtra("objectifLipides",   Integer.parseInt(inLip.getText().toString()));
+        data.putExtra("objectifGlucides",  Integer.parseInt(inGlu.getText().toString()));
 
         setResult(Activity.RESULT_OK, data);
         finish();
