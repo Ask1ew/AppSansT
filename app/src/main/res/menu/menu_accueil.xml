@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_accueil" android:title="@string/accueil"/>
+    <item android:id="@+id/menu_repas" android:title="@string/repas"/>
+    <item android:id="@+id/menu_poids" android:title="@string/poids"/>
+    <item android:id="@+id/menu_objectifs" android:title="@string/objectifs"/>
+    <item android:id="@+id/menu_entrainement" android:title="@string/entra_nement"/>
+</menu>

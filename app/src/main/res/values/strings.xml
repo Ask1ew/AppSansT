@@ -20,4 +20,11 @@
     <string name="title_activity_poids">Poids</string>
     <string name="title_activity_objectifs">Objectifs</string>
     <string name="title_activity_repas">Repas</string>
+    <string name="accueil">Accueil</string>
+    <string name="profil">Profil</string>
+    <string name="param_tres">Paramètres</string>
+    <string name="repas">Repas</string>
+    <string name="poids">Poids</string>
+    <string name="objectifs">Objectifs</string>
+    <string name="entra_nement">Entraînement</string>
 </resources>
