@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="#FFFFFF">
 
     <!-- Barre de menu -->
     <androidx.fragment.app.FragmentContainerView
@@ -32,6 +32,7 @@
 
     <!-- Formulaire -->
     <LinearLayout
+        android:id="@+id/layout_formulaire_objectif"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -47,7 +48,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Calories (kcal)">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputObjCalories"
                 android:inputType="numberDecimal"
@@ -63,7 +63,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Protéines (g)">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputObjProteines"
                 android:inputType="numberDecimal"
@@ -79,7 +78,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Lipides (g)">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputObjLipides"
                 android:inputType="numberDecimal"
@@ -95,7 +93,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Glucides (g)">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputObjGlucides"
                 android:inputType="numberDecimal"
@@ -118,4 +115,29 @@
             android:textColor="@android:color/white"/>
     </LinearLayout>
 
+    <!-- Historique (RecyclerView) -->
+    <TextView
+        android:id="@+id/textView_historique"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Historique des objectifs"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_formulaire_objectif"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_objectifs"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/textView_historique"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

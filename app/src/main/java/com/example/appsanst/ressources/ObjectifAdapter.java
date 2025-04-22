@@ -48,10 +48,10 @@ public class ObjectifAdapter extends RecyclerView.Adapter<ObjectifAdapter.Object
 
         ObjectifViewHolder(View itemView) {
             super(itemView);
-            titre = itemView.findViewById(R.id.textView_titre);
-            description = itemView.findViewById(R.id.textView_description);
+            titre = itemView.findViewById(R.id.textView_titre_objectif);
+            description = itemView.findViewById(R.id.textView_description_objectif);
             progressBar = itemView.findViewById(R.id.progressBar);
-            progression = itemView.findViewById(R.id.textView_progression);
+            progression = itemView.findViewById(R.id.textView_progression_objectif);
         }
     }
 }
