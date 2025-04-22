@@ -2,20 +2,12 @@ package com.example.appsanst;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.appsanst.ressources.CycleEntrainement;
 import com.example.appsanst.ressources.Exercice;
 import com.example.appsanst.ressources.CycleAdapter;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
