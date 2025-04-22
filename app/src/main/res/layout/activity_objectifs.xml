@@ -1,144 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
 
     <!-- Barre de menu -->
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/menu_fragment_container"
-        android:name="fragments.menuBarre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            android:id="@+id/menu_fragment_container"
+            android:name="fragments.menuBarre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Tout le contenu scrollable -->
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/scroll_content"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/menu_fragment_container"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+            android:id="@+id/scroll_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@id/menu_fragment_container"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="24dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp">
 
             <!-- Titre formulaire -->
             <TextView
-                android:id="@+id/textView_objectifs_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Objectifs nutritionnels"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:padding="16dp"/>
+                    android:id="@+id/textView_objectifs_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Objectifs nutritionnels"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:padding="16dp"/>
 
             <!-- Formulaire nutritionnel -->
             <!-- ... (reprends ici tous tes champs TextInputLayout comme avant) ... -->
 
             <!-- Calories -->
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Calories (kcal)">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputObjCalories"
-                    android:inputType="numberDecimal"
-                    android:singleLine="true"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Calories (kcal)">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputObjCalories"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Protéines -->
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Protéines (g)">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputObjProteines"
-                    android:inputType="numberDecimal"
-                    android:singleLine="true"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Protéines (g)">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputObjProteines"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Lipides -->
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Lipides (g)">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputObjLipides"
-                    android:inputType="numberDecimal"
-                    android:singleLine="true"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Lipides (g)">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputObjLipides"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Glucides -->
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Glucides (g)">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputObjGlucides"
-                    android:inputType="numberDecimal"
-                    android:singleLine="true"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Glucides (g)">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputObjGlucides"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Bouton Enregistrer -->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSaveObjectifs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Enregistrer"
-                android:textAllCaps="false"
-                app:cornerRadius="8dp"
-                app:iconTint="@android:color/white"
-                app:backgroundTint="#1E2654"
-                android:textColor="@android:color/white"/>
+                    android:id="@+id/btnSaveObjectifs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Enregistrer"
+                    android:textAllCaps="false"
+                    app:cornerRadius="8dp"
+                    app:iconTint="@android:color/white"
+                    app:backgroundTint="#1E2654"
+                    android:textColor="@android:color/white"/>
 
             <!-- Titre historique -->
             <TextView
-                android:id="@+id/textView_historique"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Historique des objectifs"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:padding="8dp"
-                android:layout_marginTop="24dp"/>
+                    android:id="@+id/textView_historique"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Historique des objectifs"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:layout_marginTop="24dp"/>
 
             <!-- RecyclerView pour l'historique -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_objectifs"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginTop="8dp"
-                android:padding="8dp"/>
+                    android:id="@+id/recyclerView_objectifs"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="8dp"
+                    android:padding="8dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
