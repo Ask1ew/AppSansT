@@ -26,20 +26,7 @@ public class EntrainementActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_entrainement);
-
-        View mainView = findViewById(R.id.main);
-        if (mainView != null) {
-            ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return insets;
-            });
-        } else {
-            throw new NullPointerException("La vue avec l'ID 'main' est introuvable.");
-        }
 
         // Préparer les cycles d'entraînement préconfigurés
         List<CycleEntrainement> cycles = getCyclesPreconfigures();
