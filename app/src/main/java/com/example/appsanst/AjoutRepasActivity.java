@@ -22,7 +22,9 @@ import java.util.List;
 
 public class AjoutRepasActivity extends AppCompatActivity {
 
-    private TextInputEditText inputNomAliment, inputQuantite, inputCalories;
+    private TextInputEditText inputNomRepas;
+    private TextInputEditText inputNomAliment, inputQuantite, inputCalories,
+            inputGlucides, inputProteines, inputLipides;
     private AutoCompleteTextView dropdownUnite;
     private RecyclerView recyclerView;
     private AlimentAdapter adapter;
@@ -34,9 +36,13 @@ public class AjoutRepasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_repas);
 
+        inputNomRepas  = findViewById(R.id.inputNomRepas);
         inputNomAliment = findViewById(R.id.inputNomAliment);
         inputQuantite = findViewById(R.id.inputQuantite);
         inputCalories = findViewById(R.id.inputCalories);
+        inputGlucides   = findViewById(R.id.inputGlucides);
+        inputProteines  = findViewById(R.id.inputProteines);
+        inputLipides    = findViewById(R.id.inputLipides);
         dropdownUnite = findViewById(R.id.dropdownUnite);
         recyclerView = findViewById(R.id.recyclerViewAliments);
         btnValider = findViewById(R.id.btnValiderRepas);
@@ -57,49 +63,72 @@ public class AjoutRepasActivity extends AppCompatActivity {
     }
 
     private void ajouterAliment() {
-        String nom = inputNomAliment.getText().toString().trim();
+        String nom      = inputNomAliment.getText().toString().trim();
         String quantite = inputQuantite.getText().toString().trim();
-        String calStr = inputCalories.getText().toString().trim();
-        String unite = dropdownUnite.getText().toString().trim();
+        String unite    = dropdownUnite.getText().toString().trim();
 
-        // Vérification des champs
-        if (TextUtils.isEmpty(nom) || TextUtils.isEmpty(quantite) || TextUtils.isEmpty(unite) || TextUtils.isEmpty(calStr)) {
+        // chaînes pour conversion
+        String calStr = inputCalories.getText().toString().trim();
+        String gluStr = inputGlucides.getText().toString().trim();
+        String proStr = inputProteines.getText().toString().trim();
+        String lipStr = inputLipides.getText().toString().trim();
+
+        if (TextUtils.isEmpty(nom) || TextUtils.isEmpty(quantite) || TextUtils.isEmpty(unite)
+                || TextUtils.isEmpty(calStr) || TextUtils.isEmpty(gluStr)
+                || TextUtils.isEmpty(proStr) || TextUtils.isEmpty(lipStr)) {
             Toast.makeText(this, "Remplis tous les champs pour l'aliment", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Conversion
-        int calories = Integer.parseInt(calStr);
+        int calories  = Integer.parseInt(calStr);
+        int glucides  = Integer.parseInt(gluStr);
+        int proteines = Integer.parseInt(proStr);
+        int lipides   = Integer.parseInt(lipStr);
+
         String quantiteComplete = quantite + " " + unite;
 
-        // Ajout à la liste
-        listeAliments.add(new Aliment(nom, quantiteComplete, calories));
+        listeAliments.add(
+                new Aliment(nom, quantiteComplete, calories, glucides, proteines, lipides)
+        );
         adapter.notifyItemInserted(listeAliments.size() - 1);
 
-        // Reset des champs
+        // reset
         inputNomAliment.setText("");
         inputQuantite.setText("");
         inputCalories.setText("");
+        inputGlucides.setText("");
+        inputProteines.setText("");
+        inputLipides.setText("");
         dropdownUnite.setText("");
     }
 
     private void validerRepas() {
+
+        String nomRepas = inputNomRepas.getText().toString().trim();
+        if (TextUtils.isEmpty(nomRepas)) {
+            Toast.makeText(this, "Indique le nom du repas", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (listeAliments.isEmpty()) {
             Toast.makeText(this, "Ajoute au moins un aliment", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        int totalCalories = 0;
+        int totalCal=0, totalGlu=0, totalPro=0, totalLip=0;
         for (Aliment a : listeAliments) {
-            totalCalories += a.getCalories();
+            totalCal += a.getCalories();
+            totalGlu += a.getGlucides();
+            totalPro += a.getProteines();
+            totalLip += a.getLipides();
         }
 
         Intent result = new Intent();
-        result.putExtra("nom", "Repas personnalisé");
-        result.putExtra("calories", totalCalories);
-        result.putExtra("glucides", 0);   // Tu pourras calculer ça plus tard
-        result.putExtra("proteines", 0);
-        result.putExtra("lipides", 0);
+        result.putExtra("nomRepas",  nomRepas);
+        result.putExtra("calories",  totalCal);
+        result.putExtra("glucides",  totalGlu);
+        result.putExtra("proteines", totalPro);
+        result.putExtra("lipides",   totalLip);
 
         setResult(Activity.RESULT_OK, result);
         finish();

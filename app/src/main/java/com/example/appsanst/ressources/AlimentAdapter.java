@@ -13,34 +13,41 @@ import java.util.List;
 
 public class AlimentAdapter extends RecyclerView.Adapter<AlimentAdapter.AlimentViewHolder> {
 
-    private List<Aliment> aliments;
+    private final List<Aliment> aliments;
 
     public AlimentAdapter(List<Aliment> aliments) {
         this.aliments = aliments;
     }
 
-    public static class AlimentViewHolder extends RecyclerView.ViewHolder {
+    static class AlimentViewHolder extends RecyclerView.ViewHolder {
         TextView textNom, textQuantite, textCalories;
 
-        public AlimentViewHolder(@NonNull View itemView) {
+        AlimentViewHolder(@NonNull View itemView) {
             super(itemView);
-            textNom = itemView.findViewById(R.id.textNom);
+            textNom      = itemView.findViewById(R.id.textNom);
             textQuantite = itemView.findViewById(R.id.textQuantite);
             textCalories = itemView.findViewById(R.id.textCalories);
         }
 
-        public void bind(Aliment aliment) {
+        void bind(Aliment aliment) {
             textNom.setText(aliment.getNom());
             textQuantite.setText(aliment.getQuantite());
-            textCalories.setText(aliment.getCalories() + " kcal");
+
+            // Ex. : 123 kcal – P 10 g / G 20 g / L 5 g
+            String infos = aliment.getCalories()   + " kcal  —  "
+                    + "P " + aliment.getProteines() + " g / "
+                    + "G " + aliment.getGlucides() + " g / "
+                    + "L " + aliment.getLipides()  + " g";
+            textCalories.setText(infos);
         }
     }
 
     @NonNull
     @Override
     public AlimentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vue = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_aliment, parent, false);
-        return new AlimentViewHolder(vue);
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_aliment, parent, false);
+        return new AlimentViewHolder(v);
     }
 
     @Override
@@ -49,8 +56,5 @@ public class AlimentAdapter extends RecyclerView.Adapter<AlimentAdapter.AlimentV
     }
 
     @Override
-    public int getItemCount() {
-        return aliments.size();
-    }
+    public int getItemCount() { return aliments.size(); }
 }
-

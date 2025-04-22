@@ -1,42 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ObjectifsActivity">
-
-    <!-- Barre de menu fragment -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/menu_fragment_container"
-        android:name="fragments.menuBarre"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_height="match_parent">
 
+    <!-- Barre de menu -->
+    <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/menu_fragment_container"
+            android:name="fragments.menuBarre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Titre -->
     <TextView
-        android:id="@+id/textView_objectifs_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vos objectifs"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/menu_fragment_container"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+            android:id="@+id/textView_objectifs_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Objectifs nutritionnels"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/menu_fragment_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_objectifs"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/textView_objectifs_title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:padding="8dp"/>
+    <!-- ============ CHAMPS ============ -->
 
+    <!-- Calories -->
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Calories (kcal)"
+            app:layout_constraintTop_toBottomOf="@id/textView_objectifs_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputObjCalories"
+                android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Protéines -->
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Protéines (g)"
+            app:layout_constraintTop_toBottomOf="@id/inputObjCalories"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputObjProteines"
+                android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Lipides -->
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Lipides (g)"
+            app:layout_constraintTop_toBottomOf="@id/inputObjProteines"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputObjLipides"
+                android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Glucides -->
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Glucides (g)"
+            app:layout_constraintTop_toBottomOf="@id/inputObjLipides"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputObjGlucides"
+                android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Bouton Enregistrer -->
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveObjectifs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Enregistrer"
+            app:backgroundTint="#1E2654"
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@id/inputObjGlucides"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="24dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

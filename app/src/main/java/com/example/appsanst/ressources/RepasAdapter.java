@@ -13,43 +13,47 @@ import java.util.List;
 
 public class RepasAdapter extends RecyclerView.Adapter<RepasAdapter.RepasViewHolder> {
 
-    private List<Repas> listeDesRepas;
+    private final List<Repas> data;
 
-    public RepasAdapter(List<Repas> listeDesRepas) {
-        this.listeDesRepas = listeDesRepas;
+    public RepasAdapter(List<Repas> data) {
+        this.data = data;
     }
 
-    public static class RepasViewHolder extends RecyclerView.ViewHolder {
-        TextView textNomRepas, textCalories, textMacros;
+    static class RepasViewHolder extends RecyclerView.ViewHolder {
+        TextView nom, calories, macros;
 
-        public RepasViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textNomRepas = itemView.findViewById(R.id.textNomRepas);
-            textCalories = itemView.findViewById(R.id.textCalories);
-            textMacros = itemView.findViewById(R.id.textMacros);
+        RepasViewHolder(@NonNull View v) {
+            super(v);
+            nom      = v.findViewById(R.id.textNomRepas);
+            calories = v.findViewById(R.id.textCaloriesRepas);
+            macros   = v.findViewById(R.id.textMacrosRepas);
         }
 
-        public void bind(Repas repas) {
-            textNomRepas.setText(repas.getNom());
-            textCalories.setText("Calories : " + repas.getCalories() + " kcal");
-            textMacros.setText("Glucides : " + repas.getGlucides() + "g | Protéines : " + repas.getProteines() + "g | Lipides : " + repas.getLipides() + "g");
+        void bind(Repas r) {
+            nom.setText(r.getNom());
+
+            calories.setText(r.getCalories() + " kcal");
+
+            String m = "P " + r.getProteines() + " g   •   "
+                    + "G " + r.getGlucides()  + " g   •   "
+                    + "L " + r.getLipides()   + " g";
+            macros.setText(m);
         }
     }
 
     @NonNull
     @Override
     public RepasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vue = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_repas, parent, false);
-        return new RepasViewHolder(vue);
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_repas, parent, false);
+        return new RepasViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RepasViewHolder holder, int position) {
-        holder.bind(listeDesRepas.get(position));
+        holder.bind(data.get(position));
     }
 
     @Override
-    public int getItemCount() {
-        return listeDesRepas.size();
-    }
+    public int getItemCount() { return data.size(); }
 }
