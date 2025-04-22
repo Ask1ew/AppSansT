@@ -18,12 +18,9 @@ public class homeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Récupérer le nom d'utilisateur depuis l'Intent
-        String displayName = getIntent().getStringExtra("displayName");
-
         // Afficher le message de bienvenue
         TextView welcomeText = findViewById(R.id.welcome_text);
-        welcomeText.setText(getString(R.string.welcome) + " " + displayName);
+        welcomeText.setText(getString(R.string.welcome));
 
         // Configurer le bouton pour la page Repas
         Button buttonRepas = findViewById(R.id.button_repas);
