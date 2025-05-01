@@ -1,55 +1,72 @@
-<FrameLayout
+<com.google.android.material.appbar.AppBarLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/conteneurFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conteneurFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="fragments.menuBarre"
-    android:layout_margin="0dp"
+    android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
-    app:layout_scrollEffect="none">
+    tools:context="fragments.menuBarre">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#111543"
-        android:layout_margin="0dp"
-        android:fadingEdge="vertical"
-        android:fadingEdgeLength="10dp"
-        android:outlineAmbientShadowColor="@color/black">
+        android:elevation="4dp">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonBurger"
-            android:layout_width="65dp"
-            android:layout_height="match_parent"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:background="@drawable/icon_menu_blanc"
-            android:gravity="center"
-            android:layout_gravity="left|center_vertical"
-            android:layout_margin="8dp"
-            android:contentDescription="@string/open_menu"
-            tools:ignore="RtlHardcoded" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:icon="@drawable/icon_menu_blanc"
+            app:iconTint="#FFFFFF"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="24dp"
+            style="@style/Widget.Material3.Button.IconButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="12dp"
+            android:contentDescription="@string/open_menu"/>
 
         <TextView
             android:id="@+id/textViewMenuBarre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:textSize="34sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
             android:textColor="#FFFFFF"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <Button
-            android:layout_width="68dp"
-            android:layout_height="match_parent"
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonCompteMenuBarre"
-            android:layout_gravity="clip_horizontal|right"
-            android:layout_margin="8dp"
-            android:background="@drawable/icon_compte_blanc"
-            android:contentDescription="@string/open_user_account"
-            tools:ignore="RtlHardcoded" />
-    </FrameLayout>
-</FrameLayout>
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:icon="@drawable/icon_compte_blanc"
+            app:iconTint="#FFFFFF"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="24dp"
+            style="@style/Widget.Material3.Button.IconButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="@string/open_user_account"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.appbar.AppBarLayout>
