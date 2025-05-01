@@ -21,13 +21,6 @@ import com.example.appsanst.ui.AddFabFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Écran « Repas » :
- *  • liste des repas consommés                     (RecyclerView)
- *  • suivi journalier Calories / P / L / G         (4 ProgressBar)
- *  • FAB (fragment) pour ajouter un repas          (+ réutilisable ailleurs)
- *  • menu d’accès à l’écran « Objectifs »
- */
 public class RepasActivity extends AppCompatActivity
         implements AddFabFragment.OnFabAction {
 
@@ -161,7 +154,7 @@ public class RepasActivity extends AppCompatActivity
     }
 
     /* -------------------------------------------------------------------- */
-    /* menu option « Objectifs » */
+    /* menu option «Objectifs» */
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_repas, menu);
         return true;
