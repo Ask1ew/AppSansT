@@ -51,20 +51,30 @@ public class LoginRepository {
         prefs.edit().clear().apply();
     }
 
-    private void setLoggedInUser(LoggedInUser user) {
+    private void setLoggedInUser(LoggedInUser user, Context context) {
         this.user = user;
 
-        // Sauvegarder dans les SharedPreferences
+        // Sauvegarder les informations utilisateur dans SharedPreferences
+        SharedPreferences prefs = context.getSharedPreferences("user_session", Context.MODE_PRIVATE);
         prefs.edit()
-                .putString(KEY_USER_ID, user.getUserId())
-                .putString(KEY_DISPLAY_NAME, user.getDisplayName())
+                .putString("user_id", user.getUserId())
+                .putString("display_name", user.getDisplayName())
                 .apply();
     }
 
     public Result<LoggedInUser> login(String username, String password) {
         Result<LoggedInUser> result = dataSource.login(username, password);
         if (result instanceof Result.Success) {
-            setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
+            LoggedInUser user = ((Result.Success<LoggedInUser>) result).getData();
+
+            // Mettre à jour l'objet user en mémoire
+            this.user = user;
+
+            // Sauvegarder directement dans les préférences
+            prefs.edit()
+                    .putString(KEY_USER_ID, user.getUserId())
+                    .putString(KEY_DISPLAY_NAME, user.getDisplayName())
+                    .apply();
         }
         return result;
     }

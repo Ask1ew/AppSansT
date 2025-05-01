@@ -39,8 +39,7 @@ public class menuBarre extends Fragment {
         });
 
         view.findViewById(R.id.buttonCompteMenuBarre).setOnClickListener(v -> {
-            // Afficher le profil utilisateur ou les paramètres du compte
-            Toast.makeText(requireContext(), "Profil utilisateur", Toast.LENGTH_SHORT).show();
+            navigateTo(com.example.appsanst.ProfilActivity.class);
         });
     }
 

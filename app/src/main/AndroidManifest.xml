@@ -53,5 +53,9 @@
                   android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
                   android:windowSoftInputMode="stateHidden|adjustResize"/>
 
+        <activity
+            android:name=".ProfilActivity"
+            android:exported="false" />
+
     </application>
 </manifest>
