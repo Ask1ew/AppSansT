@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.appsanst.ressources.PoidsEntry;
+import com.example.appsanst.ressources.Repas;
 import connexion.data.model.LoggedInUser;
 
 import java.text.ParseException;
@@ -19,7 +20,7 @@ import java.util.UUID;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "appsante.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Table Utilisateurs
     private static final String TABLE_USERS = "users";
@@ -34,6 +35,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_POIDS_USER_ID = "user_id";
     private static final String COLUMN_POIDS_DATE = "date";
     private static final String COLUMN_POIDS_VALEUR = "valeur";
+
+    // Tables Repas et Objectifs
+    private static final String TABLE_REPAS = "repas";
+    private static final String TABLE_OBJECTIFS_NUTRITIONNELS = "objectifs_nutritionnels";
+
+    // Colonnes repas
+    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_NOM_REPAS = "nom";
+    private static final String COLUMN_CALORIES = "calories";
+    private static final String COLUMN_PROTEINES = "proteines";
+    private static final String COLUMN_LIPIDES = "lipides";
+    private static final String COLUMN_GLUCIDES = "glucides";
+    private static final String COLUMN_DATE = "date";
+
+    // Colonnes objectifs
+    private static final String COLUMN_OBJECTIF_CALORIES = "obj_calories";
+    private static final String COLUMN_OBJECTIF_PROTEINES = "obj_proteines";
+    private static final String COLUMN_OBJECTIF_LIPIDES = "obj_lipides";
+    private static final String COLUMN_OBJECTIF_GLUCIDES = "obj_glucides";
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
@@ -71,8 +91,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + TABLE_USERS + "(" + COLUMN_USER_ID + ")"
                 + ")";
 
+        // Création de la table repas
+        String CREATE_REPAS_TABLE = "CREATE TABLE " + TABLE_REPAS + "("
+                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_USER_ID + " TEXT NOT NULL,"
+                + COLUMN_NOM_REPAS + " TEXT NOT NULL,"
+                + COLUMN_CALORIES + " INTEGER,"
+                + COLUMN_PROTEINES + " INTEGER,"
+                + COLUMN_LIPIDES + " INTEGER,"
+                + COLUMN_GLUCIDES + " INTEGER,"
+                + COLUMN_DATE + " TEXT,"
+                + "FOREIGN KEY(" + COLUMN_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_USER_ID + ")"
+                + ")";
+
+        // Création de la table objectifs nutritionnels
+        String CREATE_OBJECTIFS_TABLE = "CREATE TABLE " + TABLE_OBJECTIFS_NUTRITIONNELS + "("
+                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_USER_ID + " TEXT UNIQUE,"
+                + COLUMN_OBJECTIF_CALORIES + " INTEGER DEFAULT 2000,"
+                + COLUMN_OBJECTIF_PROTEINES + " INTEGER DEFAULT 100,"
+                + COLUMN_OBJECTIF_LIPIDES + " INTEGER DEFAULT 70,"
+                + COLUMN_OBJECTIF_GLUCIDES + " INTEGER DEFAULT 250,"
+                + "FOREIGN KEY(" + COLUMN_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_USER_ID + ")"
+                + ")";
+
         db.execSQL(CREATE_USERS_TABLE);
         db.execSQL(CREATE_POIDS_TABLE);
+        db.execSQL(CREATE_REPAS_TABLE);
+        db.execSQL(CREATE_OBJECTIFS_TABLE);
 
         // Ajouter un utilisateur de test
         ContentValues values = new ContentValues();
@@ -85,6 +131,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_REPAS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_OBJECTIFS_NUTRITIONNELS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_POIDS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         onCreate(db);
@@ -167,5 +215,99 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return entries;
+    }
+
+    // --- MÉTHODES POUR REPAS ---
+
+    public long ajouterRepas(String userId, Repas repas) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_USER_ID, userId);
+        values.put(COLUMN_NOM_REPAS, repas.getNom());
+        values.put(COLUMN_CALORIES, repas.getCalories());
+        values.put(COLUMN_PROTEINES, repas.getProteines());
+        values.put(COLUMN_LIPIDES, repas.getLipides());
+        values.put(COLUMN_GLUCIDES, repas.getGlucides());
+        values.put(COLUMN_DATE, repas.getDate());
+
+        long id = db.insert(TABLE_REPAS, null, values);
+        db.close();
+        return id;
+    }
+
+    public List<Repas> getRepasUtilisateur(String userId) {
+        List<Repas> listeRepas = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_REPAS +
+                " WHERE " + COLUMN_USER_ID + " = ?" +
+                " ORDER BY " + COLUMN_DATE + " DESC";
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, new String[]{userId});
+
+        if (cursor.moveToFirst()) {
+            do {
+                String nom = cursor.getString(cursor.getColumnIndex(COLUMN_NOM_REPAS));
+                int calories = cursor.getInt(cursor.getColumnIndex(COLUMN_CALORIES));
+                int glucides = cursor.getInt(cursor.getColumnIndex(COLUMN_GLUCIDES));
+                int proteines = cursor.getInt(cursor.getColumnIndex(COLUMN_PROTEINES));
+                int lipides = cursor.getInt(cursor.getColumnIndex(COLUMN_LIPIDES));
+                String date = cursor.getString(cursor.getColumnIndex(COLUMN_DATE));
+
+                Repas repas = new Repas(nom, calories, glucides, proteines, lipides);
+                repas.setDate(date);
+
+                listeRepas.add(repas);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return listeRepas;
+    }
+
+    // --- MÉTHODES POUR OBJECTIFS ---
+
+    public void sauvegarderObjectifs(String userId, int calories, int proteines, int lipides, int glucides) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_USER_ID, userId);
+        values.put(COLUMN_OBJECTIF_CALORIES, calories);
+        values.put(COLUMN_OBJECTIF_PROTEINES, proteines);
+        values.put(COLUMN_OBJECTIF_LIPIDES, lipides);
+        values.put(COLUMN_OBJECTIF_GLUCIDES, glucides);
+
+        // Mise à jour ou insertion (REPLACE)
+        db.replace(TABLE_OBJECTIFS_NUTRITIONNELS, null, values);
+        db.close();
+    }
+
+    public int[] getObjectifsNutritionnels(String userId) {
+        int[] objectifs = new int[]{2000, 100, 70, 250}; // Valeurs par défaut
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(
+                TABLE_OBJECTIFS_NUTRITIONNELS,
+                new String[]{
+                        COLUMN_OBJECTIF_CALORIES,
+                        COLUMN_OBJECTIF_PROTEINES,
+                        COLUMN_OBJECTIF_LIPIDES,
+                        COLUMN_OBJECTIF_GLUCIDES
+                },
+                COLUMN_USER_ID + "=?",
+                new String[]{userId},
+                null, null, null);
+
+        if (cursor.moveToFirst()) {
+            objectifs[0] = cursor.getInt(cursor.getColumnIndex(COLUMN_OBJECTIF_CALORIES));
+            objectifs[1] = cursor.getInt(cursor.getColumnIndex(COLUMN_OBJECTIF_PROTEINES));
+            objectifs[2] = cursor.getInt(cursor.getColumnIndex(COLUMN_OBJECTIF_LIPIDES));
+            objectifs[3] = cursor.getInt(cursor.getColumnIndex(COLUMN_OBJECTIF_GLUCIDES));
+        }
+
+        cursor.close();
+        db.close();
+        return objectifs;
     }
 }

@@ -1,11 +1,16 @@
 package com.example.appsanst.ressources;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Repas {
     private String nom;
     private int calories;
     private int glucides;
     private int proteines;
     private int lipides;
+    private String date;
 
     public Repas(String nom, int calories, int glucides, int proteines, int lipides) {
         this.nom = nom;
@@ -13,9 +18,11 @@ public class Repas {
         this.glucides = glucides;
         this.proteines = proteines;
         this.lipides = lipides;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        this.date = sdf.format(new Date());
     }
 
-    // Getters
     public String getNom() {
         return nom;
     }
@@ -34,5 +41,13 @@ public class Repas {
 
     public int getLipides() {
         return lipides;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

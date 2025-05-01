@@ -33,6 +33,6 @@ public class LoginDataSource {
     }
 
     public void logout() {
-        // Rien à faire avec SQLite, la gestion de session est dans LoginRepository
+
     }
 }
