@@ -17,7 +17,7 @@ public class LoginViewModel extends ViewModel {
     private final MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private final MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
     private final LoginRepository loginRepository;
-    private final Executor executor = Executors.newSingleThreadExecutor(); // Pour le threading
+    private final Executor executor = Executors.newSingleThreadExecutor();
 
     public LoginViewModel(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
@@ -31,6 +31,10 @@ public class LoginViewModel extends ViewModel {
         return loginResult;
     }
 
+    public boolean isUserLoggedIn() {
+        return loginRepository.isLoggedIn();
+    }
+
     public void login(String username, String password) {
         executor.execute(() -> {
             Result<LoggedInUser> result = loginRepository.login(username, password);
@@ -39,7 +43,7 @@ public class LoginViewModel extends ViewModel {
                 loginResult.postValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
             } else {
                 String error = ((Result.Error) result).getError().getMessage();
-                loginResult.postValue(new LoginResult(error)); // Gestion d'erreur détaillée
+                loginResult.postValue(new LoginResult(error));
             }
         });
     }

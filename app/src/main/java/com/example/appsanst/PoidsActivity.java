@@ -1,6 +1,8 @@
 package com.example.appsanst;
 
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import fragments.AddWeightFragment;
+import database.PoidsDbHelper;
 import com.example.appsanst.ressources.PoidsAdapter;
 import com.example.appsanst.ressources.PoidsEntry;
 
@@ -24,11 +27,23 @@ public class PoidsActivity extends AppCompatActivity implements AddWeightFragmen
     private List<PoidsEntry> poidsEntries = new ArrayList<>();
     private PoidsAdapter adapter;
     private RecyclerView recyclerView;
+    private PoidsDbHelper dbHelper;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poids);
+
+        // Récupérer l'ID utilisateur depuis les préférences
+        SharedPreferences prefs = getSharedPreferences("user_session", MODE_PRIVATE);
+        userId = prefs.getString("user_id", "default_user");
+
+        // Initialiser la base de données
+        dbHelper = new PoidsDbHelper(this);
+
+        // Charger les données depuis la base
+        poidsEntries = dbHelper.getPoidsEntries(userId);
 
         // Configurer le RecyclerView
         recyclerView = findViewById(R.id.recyclerView_poids);
@@ -70,17 +85,22 @@ public class PoidsActivity extends AppCompatActivity implements AddWeightFragmen
     }
 
     private void ajouterPoids(float poids) {
-        PoidsEntry nouvelleEntree = new PoidsEntry(new Date(), poids);
-        poidsEntries.add(0, nouvelleEntree);
-        adapter.notifyItemInserted(0);
-        recyclerView.smoothScrollToPosition(0);
+        Date date = new Date();
 
-        Toast.makeText(this, "Poids ajouté : " + poids + " kg", Toast.LENGTH_SHORT).show();
-    }
+        // Créer une nouvelle entrée
+        PoidsEntry nouvelleEntree = new PoidsEntry(date, poids);
 
-    private Date getDate(int daysAgo) {
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DAY_OF_YEAR, daysAgo);
-        return cal.getTime();
+        // Sauvegarder dans la base de données
+        long id = dbHelper.ajouterPoids(userId, date, poids);
+
+        if (id != -1) {
+            // Ajouter à la liste et mettre à jour l'UI
+            poidsEntries.add(0, nouvelleEntree);
+            adapter.notifyItemInserted(0);
+            recyclerView.smoothScrollToPosition(0);
+            Toast.makeText(this, "Poids ajouté : " + poids + " kg", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Erreur lors de l'enregistrement", Toast.LENGTH_SHORT).show();
+        }
     }
 }

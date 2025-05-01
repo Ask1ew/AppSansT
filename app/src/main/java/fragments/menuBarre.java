@@ -1,8 +1,10 @@
 package fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -10,12 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.appsanst.R;
+import connexion.data.LoginDataSource;
+import connexion.data.LoginRepository;
+import connexion.login.LoginActivity;
 
 public class menuBarre extends Fragment {
 
-    public menuBarre() {
-        // Required empty public constructor
-    }
+    public menuBarre() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,12 +30,10 @@ public class menuBarre extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Clic sur le texte central : retour à LoginActivity
         view.findViewById(R.id.textViewMenuBarre).setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), home.homeActivity.class));
         });
 
-        // Clic sur le bouton burger : menu déroulant
         view.findViewById(R.id.buttonBurger).setOnClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(requireContext(), v);
             popupMenu.getMenuInflater().inflate(R.menu.menu_accueil, popupMenu.getMenu());
@@ -51,13 +52,26 @@ public class menuBarre extends Fragment {
                     startActivity(new Intent(getActivity(), com.example.appsanst.PoidsActivity.class));
                     return true;
                 } else if (itemId == R.id.menu_objectifs) {
-                startActivity(new Intent(getActivity(), com.example.appsanst.ObjectifsActivity.class));
-                return true;
+                    startActivity(new Intent(getActivity(), com.example.appsanst.ObjectifsActivity.class));
+                    return true;
+                } else if (itemId == R.id.menu_logout) {
+                    // Suppression des préférences de session
+                    requireActivity().getSharedPreferences("user_session", 0).edit().clear().apply();
+
+                    // Utiliser requireContext() pour obtenir le contexte du fragment
+                    Context appContext = requireActivity().getApplicationContext();
+                    LoginRepository.getInstance(new LoginDataSource(appContext), appContext).logout();
+
+                    Toast.makeText(requireContext(), "Déconnexion réussie", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), connexion.login.LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    requireActivity().finish();
+                    return true;
                 }
                 return false;
             });
             popupMenu.show();
         });
     }
-
 }

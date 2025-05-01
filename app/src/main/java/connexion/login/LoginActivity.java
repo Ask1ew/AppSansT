@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
-    private android.widget.ProgressBar loadingProgressBar; // Ajout de la variable membre
+    private android.widget.ProgressBar loadingProgressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,20 +32,29 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
+        // Utiliser le factory avec contexte
+        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory(this))
                 .get(LoginViewModel.class);
 
-        // Initialisation de la ProgressBar comme variable membre
         loadingProgressBar = binding.loading;
 
         final android.widget.EditText usernameEditText = binding.username;
         final android.widget.EditText passwordEditText = binding.password;
         final android.widget.Button loginButton = binding.login;
 
-        // Observateur pour l'état du formulaire
+        // Vérifier si l'utilisateur est déjà connecté
+        if (loginViewModel.isUserLoggedIn()) {
+            startActivity(new Intent(this, homeActivity.class));
+            finish();
+            return;
+        }
+
+        // Observer l'état du formulaire
         loginViewModel.getLoginFormState().observe(this, loginFormState -> {
             if (loginFormState == null) return;
+
             loginButton.setEnabled(loginFormState.isDataValid());
+
             if (loginFormState.getUsernameError() != null) {
                 usernameEditText.setError(getString(loginFormState.getUsernameError()));
             }
@@ -54,20 +63,22 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Observateur pour le résultat du login
+        // Observer le résultat du login
         loginViewModel.getLoginResult().observe(this, loginResult -> {
             if (loginResult == null) return;
+
             loadingProgressBar.setVisibility(View.GONE);
+
             if (loginResult.getError() != null) {
                 showLoginFailed(loginResult.getError());
             }
             if (loginResult.getSuccess() != null) {
                 updateUiWithUser(loginResult.getSuccess());
             }
+
             setResult(Activity.RESULT_OK);
         });
 
-        // Gestion des modifications du texte
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -87,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
 
-        // Gestion de l'action "Done" du clavier
         passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 triggerLogin();
@@ -95,7 +105,6 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         });
 
-        // Gestion du clic sur le bouton
         loginButton.setOnClickListener(v -> triggerLogin());
     }
 
@@ -111,9 +120,8 @@ public class LoginActivity extends AppCompatActivity {
         String welcome = getString(R.string.welcome) + " " + model.getDisplayName();
         Toast.makeText(this, welcome, Toast.LENGTH_LONG).show();
 
-        // Navigation vers l'écran principal
         startActivity(new Intent(this, homeActivity.class));
-        finish(); // Empêche le retour à l'écran de login
+        finish();
     }
 
     private void showLoginFailed(@Nullable String errorMessage) {

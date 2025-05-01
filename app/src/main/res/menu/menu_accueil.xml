@@ -4,4 +4,5 @@
     <item android:id="@+id/menu_poids" android:title="@string/poids"/>
     <item android:id="@+id/menu_objectifs" android:title="@string/objectifs"/>
     <item android:id="@+id/menu_entrainement" android:title="@string/entra_nement"/>
+    <item android:id="@+id/menu_logout" android:title="Déconnexion" android:orderInCategory="100" />
 </menu>
