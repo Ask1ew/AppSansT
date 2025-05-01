@@ -7,4 +7,5 @@
         android:tint="@android:color/white"
         android:layout_gravity="end|bottom"
         android:layout_margin="24dp"
-        app:backgroundTint="#1E2654"/>
+        app:backgroundTint="#1E2654"
+        app:tint="@android:color/white"/>

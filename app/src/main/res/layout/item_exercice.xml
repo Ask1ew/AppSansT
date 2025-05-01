@@ -32,6 +32,12 @@
                 android:text="Répétitions : 12" />
 
         <TextView
+                android:id="@+id/textPoids"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Poids : 0 kg" />
+
+        <TextView
                 android:id="@+id/textRepos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,0 +1,56 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".DemarrerEntrainementActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!-- Barre de menu fragment -->
+<androidx.fragment.app.FragmentContainerView
+        android:id="@+id/menu_fragment_container"
+        android:name="fragments.menuBarre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<TextView
+    android:id="@+id/textView_start_prompt"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Démarrer un entraînement :"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    app:layout_constraintTop_toBottomOf="@id/menu_fragment_container"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginTop="24dp"/>
+
+        <!-- Bouton: Entraînement vide -->
+<Button
+    android:id="@+id/button_start_empty"
+    style="@style/Widget.Material3.Button.TonalButton"
+    android:layout_width="0dp"
+    android:layout_height="50dp"
+    android:text="Entraînement libre (vide)"
+    app:layout_constraintTop_toBottomOf="@id/textView_start_prompt"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="16dp"
+    android:backgroundTint="#1E2654"
+    android:textColor="@android:color/white"/>
+
+        <!-- Bouton: Entraînement enregistré -->
+<Button
+    android:id="@+id/button_start_saved"
+    style="@style/Widget.Material3.Button.TonalButton"
+    android:layout_width="0dp"
+    android:layout_height="50dp"
+    android:text="Entraînement enregistré"
+    app:layout_constraintTop_toBottomOf="@id/button_start_empty"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="12dp"
+    android:backgroundTint="#1E2654"
+    android:textColor="@android:color/white"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

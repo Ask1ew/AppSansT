@@ -1,0 +1,152 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   tools:context=".AjoutEntrainementActivity"
+                                                   android:padding="16dp">
+
+    <!-- Nom de l'entraînement -->
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutNomEntrainement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputNomEntrainement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nom de l'entraînement" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Nom de l'exercice -->
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutNomExercice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layoutNomEntrainement"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputNomExercice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nom de l'exercice" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Ligne : Séries et Répétitions -->
+    <LinearLayout
+            android:id="@+id/layoutSeriesReps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutNomExercice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:weightSum="2">
+        <!-- Champ Séries -->
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputSeries"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Séries"
+                    android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <!-- Champ Répétitions -->
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputRepetitions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Répétitions"
+                    android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Ligne : Poids et Repos -->
+    <LinearLayout
+            android:id="@+id/layoutPoidsRepos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutSeriesReps"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:weightSum="2">
+        <!-- Champ Poids -->
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputPoids"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Poids (kg)"
+                    android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <!-- Champ Repos -->
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputRepos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Repos (sec)"
+                    android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Bouton pour ajouter l'exercice à la liste -->
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAjouterExercice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Ajouter l'exercice"
+            app:layout_constraintTop_toBottomOf="@id/layoutPoidsRepos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:backgroundTint="#1E2654"
+            android:textColor="@android:color/white"/>
+
+    <!-- Liste des exercices ajoutés (RecyclerView) -->
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewExercices"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/btnAjouterExercice"
+            app:layout_constraintBottom_toTopOf="@id/btnValiderEntrainement"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/item_exercice"/>
+
+    <!-- Bouton valider l'entraînement -->
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnValiderEntrainement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Valider l'entraînement"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="24dp"
+            app:backgroundTint="#1E2654"
+            android:textColor="@android:color/white"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
